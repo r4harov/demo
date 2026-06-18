@@ -1,0 +1,69 @@
+using System;
+using System.Data.SqlClient;
+using System.Windows.Forms;
+
+namespace demo
+{
+    public partial class Authorization : Form
+    {
+        string connectionString =
+        @"Data Source=R309-04\MSSQLSERVER02;
+          Initial Catalog=demo;
+          User ID=demo;
+          Password=demo;
+          TrustServerCertificate=True;";
+
+        public Authorization()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (SqlConnection connection =
+                    new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string query =
+                    @"SELECT id
+                      FROM Users
+                      WHERE Login = @Login
+                      AND Password = @Password";
+
+                    SqlCommand command =
+                        new SqlCommand(query, connection);
+
+                    command.Parameters.AddWithValue(
+                        "@Login",
+                        textBox1.Text);
+
+                    command.Parameters.AddWithValue(
+                        "@Password",
+                        textBox2.Text);
+
+                    object result =
+                        command.ExecuteScalar();
+
+                    if (result != null)
+                    {
+                        Form1 form = new Form1();
+                        form.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show(
+                            "Неверный логин или пароль");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+    }
+}
