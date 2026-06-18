@@ -1,0 +1,139 @@
+Добавление сотрудников
+
+private void btnAddEmployee_Click(object sender, EventArgs e)
+{
+
+ string connectionString = @"Data Source=DESKTOP-NJ5AVVQ\SQLEXPRESS;Initial Catalog=test;Integrated Security=True;TrustServerCertificate=True";
+
+ if (string.IsNullOrWhiteSpace(txtFio.Text) ||
+
+  string.IsNullOrWhiteSpace(txtLogin.Text) ||
+
+  string.IsNullOrWhiteSpace(txtPassword.Text) ||
+
+  string.IsNullOrWhiteSpace(txtRole.Text))
+
+ {
+
+  MessageBox.Show("Заполните все поля");
+
+  return;
+
+ }
+
+ string query = @"INSERT INTO employees 
+
+             (fio, login, password, role)
+
+             VALUES
+
+             (@fio, @login, @password, @role)";
+
+ using (SqlConnection connection = new SqlConnection(connectionString))
+
+ using (SqlCommand command = new SqlCommand(query, connection))
+
+ {
+
+  command.Parameters.AddWithValue("@fio", txtFio.Text);
+
+  command.Parameters.AddWithValue("@login", txtLogin.Text);
+
+  command.Parameters.AddWithValue("@password", txtPassword.Text);
+
+  command.Parameters.AddWithValue("@role", txtRole.Text);
+
+  try
+
+  {
+
+   connection.Open();
+
+   command.ExecuteNonQuery();
+
+   MessageBox.Show("Сотрудник успешно добавлен");
+
+   txtFio.Clear();
+
+   txtLogin.Clear();
+
+   txtPassword.Clear();
+
+   txtRole.Clear();
+
+  }
+
+  catch (Exception ex)
+
+  {
+
+   MessageBox.Show("Ошибка: " + ex.Message);
+
+  }
+
+ }
+
+}
+
+
+
+
+
+
+Авторизация
+
+
+
+private void button3_Click(object sender, EventArgs e)
+ {
+
+     String connectionString = @"Data Source=DESKTOP-NJ5AVVQ\SQLEXPRESS;Initial Catalog=test;Integrated Security=True;TrustServerCertificate=True";
+
+     using (SqlConnection connection = new SqlConnection(connectionString))
+
+     {
+
+         connection.Open();
+
+         string query = "SELECT role FROM employees WHERE login = @login AND password = @password";
+
+         SqlCommand command = new SqlCommand(query, connection);
+
+         command.Parameters.AddWithValue("@login", textBox5.Text);
+
+   command.Parameters.AddWithValue("@password", textBox6.Text);
+
+         object result = command.ExecuteScalar();
+
+         if (result != null)
+
+         {
+
+             MessageBox.Show("Успешно");
+
+             string role = result.ToString();
+
+             if (role == "admin")
+
+                 new Form3().Show();
+
+             else
+
+                 new Form2().Show();
+
+             this.Hide();
+
+         }
+
+         else
+
+         {
+
+    MessageBox.Show("Не Успешно");
+
+   }
+
+     }
+
+ }
+
