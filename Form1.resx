@@ -1,0 +1,91 @@
+namespace Validator
+{
+    partial class Form1
+    {
+        private System.ComponentModel.IContainer components = null;
+        private System.Windows.Forms.Button getDataButton;
+        private System.Windows.Forms.Button sendResultButton;
+        private System.Windows.Forms.Label phoneLabel;
+        private System.Windows.Forms.Label resultLabel;
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+
+            base.Dispose(disposing);
+        }
+
+        private void InitializeComponent()
+        {
+            this.getDataButton = new System.Windows.Forms.Button();
+            this.sendResultButton = new System.Windows.Forms.Button();
+            this.phoneLabel = new System.Windows.Forms.Label();
+            this.resultLabel = new System.Windows.Forms.Label();
+            this.SuspendLayout();
+            // 
+            // getDataButton
+            // 
+            this.getDataButton.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.getDataButton.Location = new System.Drawing.Point(30, 60);
+            this.getDataButton.Name = "getDataButton";
+            this.getDataButton.Size = new System.Drawing.Size(91, 37);
+            this.getDataButton.TabIndex = 0;
+            this.getDataButton.Text = "Получить данные";
+            this.getDataButton.UseVisualStyleBackColor = true;
+            this.getDataButton.Click += new System.EventHandler(this.getDataButton_Click);
+            // 
+            // sendResultButton
+            // 
+            this.sendResultButton.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.sendResultButton.Location = new System.Drawing.Point(30, 123);
+            this.sendResultButton.Name = "sendResultButton";
+            this.sendResultButton.Size = new System.Drawing.Size(91, 38);
+            this.sendResultButton.TabIndex = 1;
+            this.sendResultButton.Text = "Отправить результат теста";
+            this.sendResultButton.UseVisualStyleBackColor = true;
+            this.sendResultButton.Click += new System.EventHandler(this.sendResultButton_Click);
+            // 
+            // phoneLabel
+            // 
+            this.phoneLabel.AutoSize = true;
+            this.phoneLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.phoneLabel.Location = new System.Drawing.Point(328, 60);
+            this.phoneLabel.Name = "phoneLabel";
+            this.phoneLabel.Size = new System.Drawing.Size(0, 21);
+            this.phoneLabel.TabIndex = 2;
+            // 
+            // resultLabel
+            // 
+            this.resultLabel.AutoSize = true;
+            this.resultLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.resultLabel.Location = new System.Drawing.Point(328, 140);
+            this.resultLabel.Name = "resultLabel";
+            this.resultLabel.Size = new System.Drawing.Size(0, 21);
+            this.resultLabel.TabIndex = 3;
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(650, 220);
+            this.Controls.Add(this.resultLabel);
+            this.Controls.Add(this.phoneLabel);
+            this.Controls.Add(this.sendResultButton);
+            this.Controls.Add(this.getDataButton);
+            this.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Валидация данных";
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+    }
+}
+
